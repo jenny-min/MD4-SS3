@@ -1,0 +1,22 @@
+package com.example.author_management.repositories;
+
+import com.example.author_management.models.Author;
+import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class AuthorRepository {
+    public List<Author> authors = new ArrayList<>();
+
+    public AuthorRepository() {
+        authors.add(new Author(1, "John", "john@gmail.com"));
+        authors.add(new Author(2, "Mary", "mary@gmail.com"));
+        authors.add(new Author(3, "Henry", "henry@gmail.com"));
+
+    }
+
+    public List<Author> findAll() {
+        return authors;
+    }
+}
