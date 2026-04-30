@@ -4,9 +4,8 @@ import com.example.author_management.models.Author;
 import com.example.author_management.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -24,5 +23,10 @@ public class AuthorController {
     @GetMapping("/api/author")
     public ResponseEntity<List<Author>> getAllAuthors() {
         return ResponseEntity.ok(authorService.getAllAuthors());
+    }
+
+    @PostMapping("/api/author")
+    public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
+        return ResponseEntity.ok(authorService.createAuthor(author));
     }
 }
