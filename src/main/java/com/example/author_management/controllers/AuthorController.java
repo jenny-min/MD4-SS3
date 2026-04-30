@@ -29,4 +29,13 @@ public class AuthorController {
     public ResponseEntity<Author> createAuthor(@RequestBody Author author) {
         return ResponseEntity.ok(authorService.createAuthor(author));
     }
+
+    @GetMapping("/api/author/{id}")
+    public ResponseEntity<?> getAuthorById(@PathVariable int id) {
+        Author author = authorService.getAuthorById(id);
+        if (author == null) {
+            return ResponseEntity.status(404).body("Không tìm thấy tác giả có ID " + id);
+        }
+        return ResponseEntity.ok(author);
+    }
 }

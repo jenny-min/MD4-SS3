@@ -23,4 +23,13 @@ public class AuthorRepository {
     public void save(Author author) {
          this.authors.add(author);
     }
+
+    public Author findById(int id) {
+        for (Author author : authors) {
+            if (author.getId() == id) {
+                return author;
+            }
+        }
+        return null;
+    }
 }
