@@ -46,4 +46,15 @@ public class AuthorController {
         }
         return ResponseEntity.ok(updatedAuthor);
     }
+
+    @DeleteMapping("/api/author/{id}")
+    public ResponseEntity<?> deleteAuthor(@PathVariable int id) {
+        boolean re = authorService.deleteAuthor(id);
+
+        if (re) {
+            return ResponseEntity.ok("Xóa thành công");
+        } else {
+            return ResponseEntity.status(404).body("Không tìm thấy hoặc không được phép xóa");
+        }
+    }
 }

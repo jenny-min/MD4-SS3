@@ -42,4 +42,8 @@ public class AuthorRepository {
         }
         return author;
     }
+
+    public boolean delete(int id) {
+        return authors.removeIf(a -> a.getId() == id);
+    }
 }

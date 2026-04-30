@@ -31,4 +31,17 @@ public class AuthorService {
             return null;
         }
     }
+
+    public boolean deleteAuthor(int id) {
+        Author author = authorRepository.findById(id);
+        if (author == null) {
+            return false;
+        }
+
+        if ("admin".equalsIgnoreCase(author.getName())) {
+            return false;
+        }
+
+        return authorRepository.delete(id);
+    }
 }
