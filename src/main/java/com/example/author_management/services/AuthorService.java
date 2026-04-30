@@ -23,4 +23,12 @@ public class AuthorService {
     public Author getAuthorById(int id){
         return authorRepository.findById(id);
     }
+
+    public Author updateAuthor(int id, Author request) {
+        if (getAuthorById(id) != null) {
+            return   authorRepository.updateAuthor(request);
+        } else {
+            return null;
+        }
+    }
 }

@@ -32,4 +32,14 @@ public class AuthorRepository {
         }
         return null;
     }
+
+    public Author updateAuthor(Author author) {
+        for (Author auth : authors) {
+            if (auth.getId() == author.getId()) {
+                auth.setName(author.getName());
+                auth.setEmail(author.getEmail());
+            }
+        }
+        return author;
+    }
 }

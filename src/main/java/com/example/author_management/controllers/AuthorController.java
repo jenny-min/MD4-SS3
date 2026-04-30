@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping()
 public class AuthorController {
     @Autowired
     private AuthorService authorService;
@@ -37,5 +36,14 @@ public class AuthorController {
             return ResponseEntity.status(404).body("Không tìm thấy tác giả có ID " + id);
         }
         return ResponseEntity.ok(author);
+    }
+
+    @PutMapping("/api/author/{id}")
+    public ResponseEntity<?> updateAuthor(@PathVariable int id, @RequestBody Author author) {
+        Author updatedAuthor = authorService.updateAuthor(id, author);
+        if (updatedAuthor == null) {
+            return ResponseEntity.status(404).body("Không tìm thấy tác giả có ID " + id);
+        }
+        return ResponseEntity.ok(updatedAuthor);
     }
 }
