@@ -3,6 +3,7 @@ package com.example.author_management.controllers;
 import com.example.author_management.models.Author;
 import com.example.author_management.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,5 +57,10 @@ public class AuthorController {
         } else {
             return ResponseEntity.status(404).body("Không tìm thấy hoặc không được phép xóa");
         }
+    }
+
+    @GetMapping("/api/author/search")
+    public ResponseEntity<List<Author>> searchAuthors(@RequestParam("name") String keyword) {
+        return new ResponseEntity<>(authorService.searchAuthors(keyword), HttpStatus.OK);
     }
 }

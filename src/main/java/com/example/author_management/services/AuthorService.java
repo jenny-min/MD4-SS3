@@ -4,6 +4,8 @@ import com.example.author_management.models.Author;
 import com.example.author_management.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,5 +45,10 @@ public class AuthorService {
         }
 
         return authorRepository.delete(id);
+    }
+
+    public List<Author> searchAuthors(String keyword) {
+        List<Author> authors = authorRepository.findAll();
+        return authors.stream().filter(auth -> auth.getName().toLowerCase().contains(keyword.toLowerCase())).toList();
     }
 }
